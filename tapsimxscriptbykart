@@ -1,0 +1,42 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Tapping Legends Script (by kart#0001)", "Synapse")
+local MainTab = Window:NewTab("Auto")
+local ExtraTab = Window:NewTab("Extras")
+local CreditTab = Window:NewTab("Credits")
+local MainSection = MainTab:NewSection("Auto")
+local ExtraSection = ExtraTab:NewSection("Extras")
+local CreditSection = CreditTab:NewSection("Credits")
+
+MainSection:NewToggle("AutoTap", "Automatic Tapping without being on the tab!", function(state)
+    if state then
+        getgenv().v1 = true
+        while v1 and task.wait() do
+            game:GetService("ReplicatedStorage").Remotes.Tap:FireServer()
+        end
+    else
+        getgenv().v1 = false
+    end
+end)
+
+MainSection:NewToggle("Auto Rebirth", "Automatically Rebirths when you have the money!", function(state)
+    if state then
+        getgenv().v2 = true
+        while v2 and task.wait() do
+            local args = {
+                [1] = 1
+            }
+            game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer(unpack(args))
+        end
+    else
+        getgenv().v2 = false
+    end
+end)
+
+ExtraSection:NewButton("Infinite Yield", "Basic command script :)", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+CreditSection:NewLabel("Infinite Yield from the Infinite Yiff discord")
+CreditSection:NewLabel("https://discord.gg/maG8FK6wZz")
+CreditSection:NewLabel("wYn on youtube for the tutorial")
+CreditSection:NewLabel("Kavo for the Gui")
